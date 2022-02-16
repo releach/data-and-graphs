@@ -1,0 +1,22 @@
+# Query Yago project data for artworks credited to > 1 person. 
+
+PREFIX schema: <http://schema.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?artwork ?creatorCount ?date ?artworkLabel
+WHERE 
+  {
+  { SELECT ?artwork (COUNT(DISTINCT ?creator) as ?creatorCount) ?date ?artworkLabel WHERE 
+    {
+  ?artwork rdf:type schema:VisualArtwork .
+  ?artwork  schema:creator ?creator .
+  	OPTIONAL { ?artwork rdfs:label ?artworkLabel FILTER (lang(?artworkLabel) = 'en') }
+  	OPTIONAL { ?artwork schema:dateCreated ?date . }
+  }
+  GROUP BY ?artwork ?creatorCount ?date ?artworkLabel
+  }
+  FILTER (?creatorCount > 1)
+  }
+GROUP BY ?artwork ?creatorCount ?date ?artworkLabel
+ORDER BY DESC(?date) 

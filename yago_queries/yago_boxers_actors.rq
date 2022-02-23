@@ -1,0 +1,24 @@
+```
+There's a lot of overlap between boxing and acting. This queries Yago for individuals who are boxers,
+actors, or both.
+
+```
+PREFIX yago: <http://yago-knowledge.org/resource/>
+PREFIX schema: <http://schema.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT
+?person ?birthDate ?deathDate ?ageAtDeath (COUNT(DISTINCT ?occupation) as ?occupationCount)
+
+WHERE {
+?person schema:hasOccupation yago:boxer_Q11338576 .
+?person schema:hasOccupation ?occupation
+OPTIONAL {?person schema:deathDate ?deathDate}
+OPTIONAL {?person schema:birthDate ?birthDate}
+BIND(year(?deathDate) - year(?birthDate) AS ?ageAtDeath)
+FILTER(?occupation in (yago:boxer_Q11338576, yago:Actor))
+}
+
+GROUP BY ?person ?birthDate ?deathDate ?ageAtDeath ?occupationCount
+ORDER BY DESC(?ageAtDeath)

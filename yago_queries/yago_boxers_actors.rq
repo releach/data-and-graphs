@@ -1,5 +1,5 @@
-# There's a lot of overlap between boxing and acting. This queries Yago for individuals who are boxers,
-# actors, or both.
+# There's a lot of overlap between boxing and acting. This queries Yago for individuals who are boxers
+# and those who are also actors. 
 
 PREFIX yago: <http://yago-knowledge.org/resource/>
 PREFIX schema: <http://schema.org/>

@@ -1,4 +1,6 @@
 # Query Wikidata for publicly traded US companies and their maximum revenues.
+# To run this in curl:
+# curl -H "Accept: application/sparql-results+json" --data-urlencode "query@wikidata_companies.rq" https://query.wikidata.org/bigdata/namespace/wdq/sparql
 
 SELECT
   ?company ?companyLabel

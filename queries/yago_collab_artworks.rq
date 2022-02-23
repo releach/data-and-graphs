@@ -1,13 +1,15 @@
 # Query Yago project data for artworks credited to > 1 person.
+# To run this in curl:
+# curl -H "Accept: application/sparql-results+json" --data-urlencode "query@yago_collab_artworks.rq" https://yago-knowledge.org/sparql/query
 
 PREFIX schema: <http://schema.org/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?artwork ?artworkLabel ?creatorCount ?date ?creatorLabel ?nationalityLabel ?genderLabel
-WHERE 
+WHERE
   {
-  { SELECT ?artwork (COUNT(DISTINCT ?creator) as ?creatorCount)  WHERE 
+  { SELECT ?artwork (COUNT(DISTINCT ?creator) as ?creatorCount)  WHERE
     {
   ?artwork rdf:type schema:VisualArtwork .
   ?artwork  schema:creator ?creator .
@@ -23,4 +25,4 @@ WHERE
   FILTER (?creatorCount > 1)
   }
 GROUP BY ?artwork ?creatorCount ?date ?artworkLabel ?creatorLabel ?nationalityLabel ?genderLabel
-ORDER BY DESC(?creatorCount) 
+ORDER BY DESC(?creatorCount)

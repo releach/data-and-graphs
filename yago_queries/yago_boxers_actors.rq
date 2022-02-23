@@ -1,8 +1,6 @@
-```
-There's a lot of overlap between boxing and acting. This queries Yago for individuals who are boxers,
-actors, or both.
+# There's a lot of overlap between boxing and acting. This queries Yago for individuals who are boxers,
+# actors, or both.
 
-```
 PREFIX yago: <http://yago-knowledge.org/resource/>
 PREFIX schema: <http://schema.org/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>

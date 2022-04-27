@@ -1,0 +1,30 @@
+## Example CONSTRUCT statement.
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX cpc: <http://data.epo.org/linked-data/def/cpc/>
+PREFIX kpc: <http://www.kagglepatentchallenge.com/data/>
+
+CONSTRUCT {
+    ?s ?p ?o
+}
+WHERE {
+{
+    ?s ?p ?o .
+    ?s rdf:type cpc:Class .
+}
+UNION
+{
+    ?s ?p ?o .
+    ?s rdf:type cpc:SubClass .
+}
+UNION
+    {
+        ?s ?p ?o .
+        ?s rdf:type kpc:patentPair
+    }
+UNION
+    {
+        ?s ?p ?o .
+        ?s rdf:type kpc:contextCode
+    }
+}

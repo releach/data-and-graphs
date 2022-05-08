@@ -1,5 +1,4 @@
-#There's a lot of overlap between boxing and acting. This queries for data about boxers,
-# and boxers who are also actors.
+
 # To run this in curl:
 # curl -H "Accept: application/sparql-results+json" --data-urlencode "query@yago_boxers_actors.rq" https://yago-knowledge.org/sparql/query
 

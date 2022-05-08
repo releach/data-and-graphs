@@ -1,5 +1,3 @@
-
-# To run this in curl:
 # curl -H "Accept: application/sparql-results+json" --data-urlencode "query@yago_boxers_actors.rq" https://yago-knowledge.org/sparql/query
 
 PREFIX yago: <http://yago-knowledge.org/resource/>
